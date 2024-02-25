@@ -27,10 +27,10 @@ class Student(NamedTuple):
         q = 'SELECT id, name FROM students'
         params = {}
         if limit is not None:
-            q += ' LIMIT + %(limit)s '
+            q += ' LIMIT %(limit)s'
             params['limit'] = limit
         if offset is not None:
-            q += ' OFFSET + %(offset)s '
+            q += ' OFFSET %(offset)s'
             params['offset'] = offset
         async with conn.cursor() as cur:
             await cur.execute(q, params)
@@ -39,9 +39,9 @@ class Student(NamedTuple):
 
     @staticmethod
     async def create(conn: Connection, name: str):
-        q = ("INSERT INTO students (name) "
-             "VALUES ('%(name)s')" % {'name': name})
         async with conn.cursor() as cur:
-            await cur.execute(q)
-
+            await cur.execute(
+                "INSERT INTO students (name) VALUES (%s)",
+                (name,),
+            )
 
