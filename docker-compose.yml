@@ -10,11 +10,10 @@ services:
 
   redis:
     image: redis:alpine
+    security_opt:
+      no-new-privileges:true
 
   sqli:
     build:
       context: .
-      dockerfile: Dockerfile.app
-    depends_on:
-      - postgres
-      - redis
+      dockerfile: Dockerfile.
