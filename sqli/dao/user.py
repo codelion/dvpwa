@@ -38,4 +38,18 @@ class User(NamedTuple):
             return User.from_raw(await cur.fetchone())
 
     def check_password(self, password: str):
-        return self.pwd_hash == md5(password.encode('utf-8')).hexdigest()
+        
+        
+        
+        class User(NamedTuple):
+            id: int
+            first_name: str
+            middle_name: Optional[str]
+            last_name: str
+            username: str
+            pwd_hash: str
+            is_admin: bool
+        
+            @classmethod
+            def from_raw(cls, raw: tuple):
+                return
