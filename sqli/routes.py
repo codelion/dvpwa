@@ -1,4 +1,4 @@
-from os.path import dirname, join, realpath
+from os.path import dirname, realpath
 from aiohttp.web import Application
 
 from sqli import views
@@ -30,4 +30,4 @@ def setup_routes(app: Application):
                          views.review)
 
     app.router.add_route('POST', r'/logout/', views.logout)
-    app.router.add_static('/static', join(DIR_PATH, 'static'))
+    app.router.add_static('/static', realpath(join(DIR_PATH, 'static')))

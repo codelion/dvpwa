@@ -1,6 +1,6 @@
 db:
   user: postgres
-  password: postgres
+  password: ${DB_PASSWORD}
   host: postgres
   port: 5432
   database: sqli
@@ -13,3 +13,4 @@ redis:
 app:
   host: 0.0.0.0
   port: 8080
+
