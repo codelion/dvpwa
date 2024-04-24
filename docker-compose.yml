@@ -10,6 +10,9 @@ services:
 
   redis:
     image: redis:alpine
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
 
   sqli:
     build:
